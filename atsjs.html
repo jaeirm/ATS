@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif,Cambria;
+            margin: 0;
+            padding: 0;
+           
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #49477a;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: rgb(34, 44, 73);
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            color: #faf6f6;
+        }
+
+        .Aug {
+            background-color: #88ade4;
+            border-radius: 5px;
+            color: black;
+        }
+    
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .status-overview {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 360px;
+            
+        }
+
+        .status {
+            text-align: center;
+        }
+
+        .status .count {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .status.present {
+            color: #121312;
+            width: 60px;
+            height: 70px;
+            padding: 8px;
+            border: 2px solid #14b44c;
+            background-color:#14b44c;
+            border-radius: 15px;
+          }
+
+
+        .status.absent {
+            color: #1f1d1d;
+            width: 60px;
+            height: 70px;
+            padding: 8px;
+            background-color: #f9bebe;
+            border: 2px solid #f9bebe;
+            border-radius: 15px;
+        }
+
+        .attendance-list {
+            padding: 20px;
+        }
+
+        .attendance-list input[type="search"] {
+            padding: 10px;
+            width: calc(100% - 60px);
+            color: #f9f4f4;
+            border: 1px solid #81a2d0;
+            border-radius: 5px;
+            background-color: #81a2d0;
+        }
+
+        .attendance-list .apply-btn {
+            padding: 10px;
+            background-color: #a1c5eb;
+            color: #101010;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .student-table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+            color: rgb(250, 250, 250);
+        }
+
+        .student-table th, .student-table td {
+            padding: 10px;
+            text-align: left;
+            background-color: #4c6d9c;
+        }
+
+        .student-table th {
+            background-color: #818eae;
+            color: #f9f4f4;    }
+
+        .status-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            color: rgb(255, 255, 255);
+        }
+
+        .status-present {
+            background-color: #2e9f3e;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(22, 19, 19, 0.2);
+        }
+
+        .status-absent {
+            background-color: #ff4d4d;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            background-color:#88ade4;
+            padding: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="Aug">
+            <h1>31 Aug 2024</h1></div>
+            <p>System Analysis & Design and Agile Software Development (SAD)</p>
+            <div class="status-overview">
+                <p>Dr. A. Suganthy<br>MBA FT 2023-2025
+                <div class="status present">
+                <div class="count" id="presentCount">70</div>
+                <div>Present</div>
+            </div>
+            <div class="status absent">
+                <div class="count" id="absentCount">3</div>
+                <div>Absent</div>
+            </div></p>
+        </div>
+        </div>
+
+        <div class="attendance-list">
+            <input type="search" placeholder="search students" id="searchInput">
+            <button class="apply-btn">Apply</button>
+
+            <table class="student-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Reg No.</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="studentList">
+                    <tr>
+                        <td>Hariprasad</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Rajaram</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-absent" onclick="toggleStatus(this)">ABSENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Jayaram.V</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Kamali</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Prasanth</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Blessed Miracle</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Albert Benjamin Domique</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                    <tr>
+                        <td>Jayaraam.V</td>
+                        <td>24</td>
+                        <td><div class="status-toggle status-present" onclick="toggleStatus(this)">PRESENT</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            Post Attendance
+        </div>
+    </div>
+
+    <script>
+        function toggleStatus(element) {
+            // Get current present and absent counts
+            let presentCount = parseInt(document.getElementById('presentCount').innerText);
+            let absentCount = parseInt(document.getElementById('absentCount').innerText);
+
+            // Toggle status between present and absent
+            if (element.classList.contains('status-present')) {
+                element.classList.remove('status-present');
+                element.classList.add('status-absent');
+                element.innerText = 'ABSENT';
+                // Update the count
+                presentCount--;
+                absentCount++;
+            } else {
+                element.classList.remove('status-absent');
+                element.classList.add('status-present');
+                element.innerText = 'PRESENT';
+                // Update the count
+                presentCount++;
+                absentCount--;
+            }
+
+            // Update the count in the UI
+            document.getElementById('presentCount').innerText = presentCount;
+            document.getElementById('absentCount').innerText = absentCount;
+        }
+    </script>
+</body>
+</html>
